@@ -2,6 +2,8 @@ scm_web/
 │
 ├─ main.py
 ├─ requirements.txt
+├─ architecture.txt
+├─ main_backup.txt
 │
 ├─ data/
 │   ├─ inventory.xlsx
