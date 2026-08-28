@@ -1,0 +1,85 @@
+﻿{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<h1>구매관리</h1>
+
+<p class="subtitle">
+    Procurement Management
+</p>
+
+
+<div class="panel">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>PO번호</th>
+                <th>협력사</th>
+                <th>품목명</th>
+                <th>구매수량</th>
+                <th>단가</th>
+                <th>구매금액</th>
+                <th>납기일</th>
+                <th>상태</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for item in purchase %}
+
+            <tr>
+
+                <td>
+                    {{ item["PO번호"] }}
+                </td>
+
+                <td>
+                    {{ item["협력사"] }}
+                </td>
+
+                <td>
+                    {{ item["품목명"] }}
+                </td>
+
+                <td>
+                    {{ item["구매수량"] }}
+                </td>
+
+                <td>
+                    {{ "{:,}".format(item["단가"]) }}
+                </td>
+
+                <td>
+                    {{ "{:,}".format(item["구매금액"]) }}
+                </td>
+
+                <td>
+                    {{ item["납기일"] }}
+                </td>
+
+                <td>
+                    {{ item["상태"] }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+{% endblock %}

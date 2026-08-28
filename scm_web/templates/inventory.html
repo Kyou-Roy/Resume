@@ -1,0 +1,115 @@
+﻿{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<h1>재고관리</h1>
+
+<p class="subtitle">
+    Inventory Management
+</p>
+
+
+<div class="panel">
+
+    <div class="inventory-tools">
+
+        <input type="text"
+               id="inventorySearch"
+               placeholder="품목코드 또는 품목명 검색">
+
+        <select id="statusFilter">
+
+            <option value="all">
+                전체
+            </option>
+
+            <option value="정상">
+                정상
+            </option>
+
+            <option value="발주 필요">
+                발주 필요
+            </option>
+
+        </select>
+
+        <span id="resultCount"></span>
+
+    </div>
+
+    <table id="inventoryTable">
+
+        <thead>
+
+            <tr>
+
+                <th>품목코드</th>
+                <th>품목명</th>
+                <th>창고</th>
+                <th>재고수량</th>
+                <th>안전재고</th>
+                <th>상태</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for item in inventory %}
+
+            <tr>
+
+                <td>
+                    {{ item["품목코드"] }}
+                </td>
+
+                <td>
+                    {{ item["품목명"] }}
+                </td>
+
+                <td>
+                    {{ item["창고"] }}
+                </td>
+
+                <td>
+                    {{ item["재고수량"] }}
+                </td>
+
+                <td>
+                    {{ item["안전재고"] }}
+                </td>
+
+                <td>
+
+                    {% if item["재고수량"] <= item["안전재고"] %}
+
+                    <span class="danger">
+                        발주 필요
+                    </span>
+
+                    {% else %}
+
+                    <span class="normal">
+                        정상
+                    </span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,118 @@
+﻿{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<h1>SCM Dashboard</h1>
+
+<p class="subtitle">
+    Supply Chain Management Control Center
+</p>
+
+
+<div class="cards">
+
+
+    <a href="/inventory"
+       class="card-link">
+
+        <div class="card">
+
+            <h3>총 재고</h3>
+
+            <div class="number">
+                {{ "{:,}".format(total_inventory) }}
+            </div>
+
+            <p>EA</p>
+
+        </div>
+
+    </a>
+
+
+    <a href="/inventory"
+       class="card-link">
+
+        <div class="card">
+
+            <h3>안전재고 이하</h3>
+
+            <div class="number warning">
+                {{ low_stock }}
+            </div>
+
+            <p>품목</p>
+
+        </div>
+
+    </a>
+
+
+    <a href="/inbound"
+       class="card-link">
+
+        <div class="card">
+
+            <h3>입출고 건수</h3>
+
+            <div class="number">
+                {{ inbound_count }}
+            </div>
+
+            <p>건</p>
+
+        </div>
+
+    </a>
+
+
+    <a href="/purchase"
+       class="card-link">
+
+        <div class="card">
+
+            <h3>구매금액</h3>
+
+            <div class="number">
+                {{ "{:,}".format(purchase_amount) }}
+            </div>
+
+            <p>KRW</p>
+
+        </div>
+
+    </a>
+
+
+</div>
+
+
+<div class="panel">
+
+    <h2>SCM Menu</h2>
+
+    <div class="menu-buttons">
+
+        <a class="menu-button"
+           href="/inventory">
+            📦 재고관리
+        </a>
+
+        <a class="menu-button"
+           href="/inbound">
+            🚚 입출고관리
+        </a>
+
+        <a class="menu-button"
+           href="/purchase">
+            🧾 구매관리
+        </a>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

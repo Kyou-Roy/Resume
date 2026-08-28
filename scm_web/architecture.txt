@@ -1,0 +1,20 @@
+scm_web/
+│
+├─ main.py
+├─ requirements.txt
+│
+├─ data/
+│   ├─ inventory.xlsx
+│   ├─ inbound.csv
+│   └─ purchase.xlsx
+│
+├─ templates/
+│   ├─ base.html
+│   ├─ dashboard.html
+│   ├─ inventory.html
+│   ├─ inbound.html
+│   └─ purchase.html
+│
+└─ static/
+    └─ style.css
+    └─ Script.js

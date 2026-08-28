@@ -1,0 +1,89 @@
+﻿{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<h1>입출고관리</h1>
+
+<p class="subtitle">
+    Warehouse Inbound / Outbound
+</p>
+
+
+<div class="panel">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>일자</th>
+                <th>구분</th>
+                <th>품목코드</th>
+                <th>품목명</th>
+                <th>수량</th>
+                <th>담당자</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for item in inbound %}
+
+            <tr>
+
+                <td>
+                    {{ item["일자"] }}
+                </td>
+
+                <td>
+
+                    {% if item["구분"] == "입고" %}
+
+                    <span class="normal">
+                        입고
+                    </span>
+
+                    {% else %}
+
+                    <span class="outbound">
+                        출고
+                    </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+                    {{ item["품목코드"] }}
+                </td>
+
+                <td>
+                    {{ item["품목명"] }}
+                </td>
+
+                <td>
+                    {{ item["수량"] }}
+                </td>
+
+                <td>
+                    {{ item["담당자"] }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+{% endblock %}
