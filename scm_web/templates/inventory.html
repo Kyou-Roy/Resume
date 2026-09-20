@@ -1,115 +1,77 @@
-﻿{% extends "base.html" %}
-
+{% extends "base.html" %}
 
 {% block content %}
 
-
 <h1>재고관리</h1>
+<p class="subtitle">Inventory Management</p>
 
-<p class="subtitle">
-    Inventory Management
-</p>
+{% if updated %}
+<div class="alert success">재고조정이 저장되었습니다.</div>
+{% endif %}
 
+{% if error %}
+<div class="alert error">{{ error }}</div>
+{% endif %}
 
 <div class="panel">
-
     <div class="inventory-tools">
-
-        <input type="text"
-               id="inventorySearch"
-               placeholder="품목코드 또는 품목명 검색">
-
+        <input type="text" id="inventorySearch" placeholder="품목코드 또는 품목명 검색">
         <select id="statusFilter">
-
-            <option value="all">
-                전체
-            </option>
-
-            <option value="정상">
-                정상
-            </option>
-
-            <option value="발주 필요">
-                발주 필요
-            </option>
-
+            <option value="all">전체</option>
+            <option value="정상">정상</option>
+            <option value="발주 필요">발주 필요</option>
         </select>
-
         <span id="resultCount"></span>
-
     </div>
 
-    <table id="inventoryTable">
-
-        <thead>
-
-            <tr>
-
-                <th>품목코드</th>
-                <th>품목명</th>
-                <th>창고</th>
-                <th>재고수량</th>
-                <th>안전재고</th>
-                <th>상태</th>
-
-            </tr>
-
-        </thead>
-
-
-        <tbody>
-
-            {% for item in inventory %}
-
-            <tr>
-
-                <td>
-                    {{ item["품목코드"] }}
-                </td>
-
-                <td>
-                    {{ item["품목명"] }}
-                </td>
-
-                <td>
-                    {{ item["창고"] }}
-                </td>
-
-                <td>
-                    {{ item["재고수량"] }}
-                </td>
-
-                <td>
-                    {{ item["안전재고"] }}
-                </td>
-
-                <td>
-
-                    {% if item["재고수량"] <= item["안전재고"] %}
-
-                    <span class="danger">
-                        발주 필요
-                    </span>
-
-                    {% else %}
-
-                    <span class="normal">
-                        정상
-                    </span>
-
-                    {% endif %}
-
-                </td>
-
-            </tr>
-
-            {% endfor %}
-
-        </tbody>
-
-    </table>
-
+    <div class="table-scroll">
+        <table id="inventoryTable">
+            <thead>
+                <tr>
+                    <th>품목코드</th>
+                    <th>품목명</th>
+                    <th>창고</th>
+                    <th>재고수량</th>
+                    <th>안전재고</th>
+                    <th>상태</th>
+                    <th>재고조정</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in inventory %}
+                <tr>
+                    <td>{{ item["품목코드"] }}</td>
+                    <td>{{ item["품목명"] }}</td>
+                    <td>{{ item["창고"] }}</td>
+                    <td>{{ item["재고수량"] }}</td>
+                    <td>{{ item["안전재고"] }}</td>
+                    <td>
+                        {% if item["재고수량"] <= item["안전재고"] %}
+                        <span class="danger">발주 필요</span>
+                        {% else %}
+                        <span class="normal">정상</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form method="post"
+                              action="/inventory/{{ item['품목코드'] }}/adjust"
+                              class="adjust-form">
+                            <select name="movement_type" aria-label="조정 유형">
+                                <option value="입고">입고</option>
+                                <option value="출고">출고</option>
+                            </select>
+                            <input name="quantity" type="number" min="1" required
+                                   placeholder="수량" aria-label="조정 수량">
+                            <input name="reason" type="text" minlength="2" maxlength="100"
+                                   required placeholder="조정 사유" aria-label="조정 사유">
+                            <button type="submit">저장</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
-
 
 {% endblock %}

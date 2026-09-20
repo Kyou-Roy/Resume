@@ -1,0 +1,29 @@
+.alert {
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+}
+.alert.success { background: #dff5e3; color: #217a34; }
+.alert.error { background: #ffe1e1; color: #b52b2b; }
+.table-scroll { overflow-x: auto; }
+.adjust-form {
+    display: flex;
+    gap: 6px;
+    min-width: 390px;
+}
+.adjust-form select,
+.adjust-form input,
+.adjust-form button {
+    padding: 7px 8px;
+    border: 1px solid #d7dde7;
+    border-radius: 6px;
+}
+.adjust-form input[type="number"] { width: 75px; }
+.adjust-form input[type="text"] { width: 145px; }
+.adjust-form button {
+    border-color: #253858;
+    background: #253858;
+    color: white;
+    cursor: pointer;
+}
+.adjust-form button:hover { background: #345185; }

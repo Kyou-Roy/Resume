@@ -1,22 +1,26 @@
 scm_web/
-│
-├─ main.py
-├─ requirements.txt
-├─ architecture.txt
-├─ main_backup.txt
-│
-├─ data/
-│   ├─ inventory.xlsx
-│   ├─ inbound.csv
-│   └─ purchase.xlsx
-│
-├─ templates/
-│   ├─ base.html
-│   ├─ dashboard.html
-│   ├─ inventory.html
-│   ├─ inbound.html
-│   └─ purchase.html
-│
-└─ static/
-    └─ style.css
-    └─ Script.js
+|
+|- main.py
+|- database.py
+|- models.py
+|- services.py
+|- seed.py
+|- requirements.txt
+|- architecture.txt
+|- main_backup.txt
+|- data/
+|  |- inventory.xlsx
+|  |- inbound.csv
+|  `- purchase.xlsx
+|- templates/
+|  |- base.html
+|  |- dashboard.html
+|  |- inventory.html
+|  |- inbound.html
+|  `- purchase.html
+|- static/
+|  |- Style.css
+|  |- Script.js
+|  `- inventory.css
+`- tests/
+   `- test_inventory.py
